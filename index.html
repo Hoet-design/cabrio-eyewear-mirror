@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="description" content="Cabrio Eyewear Mirror" />
+    <meta name="keywords" content="Cabrio Eyewear Mirror" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Cabrio Eyewear Mirror</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Quicksand:400,500&display=swap" rel="stylesheet"> -->
+    <style>
+        body {
+            box-sizing: border-box;
+            height: calc(100vh);
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #000;
+            color: #FFF;
+        }
+        .row {
+            max-width: 1300px; 
+            margin: 0 auto;
+        }
+        .col {
+            padding: 0 1em;
+        }
+        .header__inner {
+            display: flex;
+            align-items: flex-end;
+            padding: 1em 0;
+        }
+        .header__logo {
+            background-size: contain;
+            background-position: center center;
+            background-repeat: no-repeat;
+            width: 200px;
+        }
+        .header__logo:before {
+            content: '';
+            display: block;
+            padding-bottom: 60%;
+        }
+        .header__title {
+            font-family: "Quicksand","Helvetica","Arial",sans-serif;
+            font-size: .9em;
+            font-weight: 500;
+            padding: .5em 1em;
+        }
+        iframe {
+            display: block;
+            border: 0;
+             height: calc(100vh - 152px );
+        }
+        @media only screen and (max-width: 767px) {
+            .header__logo {
+                width: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header">
+            <div class="row">
+                <div class="col">
+                    <div class="header__inner">
+                        <div class="header__logo" style="background-image: url('logo-white.svg');"></div>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <iframe width="100%" height="100%" src="https://cabrio.owiz.fittingbox.com" frameborder="0" allow="microphone; camera"> </iframe>
+</body>
+</html>
