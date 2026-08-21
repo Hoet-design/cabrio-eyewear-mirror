@@ -1,0 +1,9 @@
+# Netlify serveert standaard `max-age=0, must-revalidate`, dus haalt elke bezoeker het logo
+# opnieuw op. Geen jaar en geen immutable: de bestandsnaam draagt geen hash, dus een nieuw
+# logo moet binnen afzienbare tijd vanzelf doorkomen.
+/*.svg
+  Cache-Control: public, max-age=604800
+/*.png
+  Cache-Control: public, max-age=604800
+/favicon.ico
+  Cache-Control: public, max-age=604800
