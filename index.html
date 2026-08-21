@@ -7,6 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Cabrio Eyewear Mirror</title>
+    <!-- De pas-app staat op een ander domein, en de browser begint daar pas aan te bouwen
+         zodra hij het iframe tegenkomt: DNS, TLS en verbinding vallen dan achter deze
+         pagina. Vooraf verbinden haalt dat naar voren. -->
+    <link rel="preconnect" href="https://cabrio.owiz.fittingbox.com" crossorigin>
+    <link rel="dns-prefetch" href="https://cabrio.owiz.fittingbox.com">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <!-- <link href="https://fonts.googleapis.com/css?family=Quicksand:400,500&display=swap" rel="stylesheet"> -->
@@ -75,6 +80,24 @@
             </div>
         </div>
     </header>
-    <iframe width="100%" height="100%" src="https://cabrio.owiz.fittingbox.com" frameborder="0" allow="microphone; camera"> </iframe>
+    <iframe id="mirror" width="100%" height="100%" data-src="https://cabrio.owiz.fittingbox.com"
+            title="Cabrio Eyewear Mirror" frameborder="0" allow="microphone; camera"></iframe>
+    <noscript>
+        <iframe width="100%" height="100%" src="https://cabrio.owiz.fittingbox.com"
+                title="Cabrio Eyewear Mirror" frameborder="0" allow="microphone; camera"></iframe>
+    </noscript>
+    <script>
+        // De pas-app is driehonderd kilobyte javascript op een ander domein, en zolang die
+        // binnenkomt en uitgevoerd wordt, komt de browser niet toe aan het tekenen van deze
+        // pagina. Op de Hoet-spiegel viel het eerste beeld daardoor op 4,5 seconden voor een
+        // kop van twee kilobyte; met het iframe na het load-event werd dat 1,7.
+        //
+        // Zonder javascript staat het iframe er meteen: dan is er ook geen bundel die de
+        // hoofddraad bezet houdt.
+        addEventListener('load', function () {
+            var frame = document.getElementById('mirror');
+            frame.src = frame.dataset.src;
+        });
+    </script>
 </body>
 </html>
