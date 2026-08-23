@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <!-- Die regel staat met opzet als eerste, en de uitleg erna: de specificatie leest de
+         codering alleen in de eerste 1024 bytes van het document, dus alles wat ervoor
+         staat gaat van dat venster af. Onder de og-regels stond ze op byte 1099 en viel ze
+         er dus buiten. Dat brak vandaag niets, want Netlify stuurt de codering ook in de
+         content-type-kopregel mee en die gaat voor. Maar wie deze pagina ooit van schijf
+         opent of achter een tussenstation zet dat die kopregel niet doorgeeft, houdt een
+         declaratie over die de browser nooit ziet. -->
     <meta name="description" content="Try a Cabrio frame on, right in your browser." />
     <meta name="keywords" content="Cabrio Eyewear Mirror" />
     <!-- Wat er te zien is als iemand deze link deelt. Deze pagina bestaat om doorgestuurd
@@ -15,7 +23,6 @@
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Cabrio Eyewear Mirror</title>
