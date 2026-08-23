@@ -1,2 +1,5 @@
 node_modules/
 .DS_Store
+
+# Werkmap van de Netlify-cli: lokale staat van deze machine, geen bron.
+.netlify/
