@@ -50,16 +50,18 @@
             align-items: flex-end;
             padding: 1em 0;
         }
+        /* Het logo is het enige eigen beeld op deze pagina en dus wat de meting als
+           grootste element ziet. Als achtergrondafbeelding werd het pas aangevraagd nadat
+           de stijl was gelezen en de doos berekend; als img-element in de opmaak, met
+           afmetingen en fetchpriority, ziet de browser het meteen bij het parsen staan.
+           Zelfde doos, zelfde uitsnede: object-fit doet hier wat background-size: contain
+           deed, ook onder 767 pixels. */
         .header__logo {
-            background-size: contain;
-            background-position: center center;
-            background-repeat: no-repeat;
-            width: 200px;
-        }
-        .header__logo:before {
-            content: '';
             display: block;
-            padding-bottom: 60%;
+            width: 200px;
+            aspect-ratio: 5 / 3;
+            object-fit: contain;
+            object-position: center center;
         }
         .header__title {
             font-family: "Quicksand","Helvetica","Arial",sans-serif;
@@ -85,8 +87,8 @@
             <div class="row">
                 <div class="col">
                     <div class="header__inner">
-                        <div class="header__logo" style="background-image: url('logo-white.svg');"></div>
-                    
+                        <img class="header__logo" src="logo-white.svg" alt="Cabrio"
+                             width="200" height="120" fetchpriority="high">
                     </div>
                 </div>
             </div>
