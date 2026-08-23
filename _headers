@@ -7,3 +7,36 @@
   Cache-Control: public, max-age=604800
 /favicon.ico
   Cache-Control: public, max-age=604800
+
+# Wat een browser van deze pagina mag verwachten, en wat niet.
+#
+# De pas-app is het hele bestaansrecht van deze pagina en vraagt de camera. Elke regel
+# hieronder is daarom eerst gewogen tegen die ene vraag: blijft de camera werken? Wat
+# camera of microfoon raakt, noemt fittingbox expliciet; de rest gaat dicht.
+/*
+  # Alles van onszelf, met drie uitzonderingen. frame-src laat het ene vreemde domein toe
+  # dat hier hoort. style-src moet inline toestaan, en hier om twee redenen: de stijl staat
+  # met opzet in de pagina zelf (een los stylesheet is een verzoek dat het tekenen
+  # tegenhoudt), en het logo hangt aan een style-attribuut op de div. script-src staat GEEN
+  # inline toe, en daarom verhuisde het script naar mirror.js. base-uri en form-action staan
+  # op none: er is geen formulier en geen reden om het grondadres te laten verzetten.
+  #
+  # Let op de slapende regel in index.html: de uitgecommentarieerde link naar
+  # fonts.googleapis.com wordt door deze stand geweigerd. Wie hem ooit aanzet, moet dat
+  # domein hier eerst bij style-src en font-src zetten, anders komt het lettertype niet.
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self'; frame-src https://cabrio.owiz.fittingbox.com; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'self'; upgrade-insecure-requests
+  # frame-ancestors 'self' hierboven verbiedt dat een vreemde site deze pagina in een frame
+  # zet. Dat is hier geen formaliteit: wie een camera-toestemming achter een doorzichtig
+  # frame kan schuiven, laat een bezoeker zijn eigen webcam aanzetten voor iemand anders.
+  # Wil een eigen site de spiegel ooit zelf inbedden, dan is dit de regel die verruimd moet
+  # worden.
+  #
+  # Camera en microfoon worden doorgegeven aan fittingbox en aan niemand anders. Het
+  # allow-attribuut op het iframe volstaat niet: de bovenliggende pagina moet de rechten
+  # eerst zelf hebben voor ze door te geven, en deze kopregel bepaalt dat.
+  Permissions-Policy: camera=(self "https://cabrio.owiz.fittingbox.com"), microphone=(self "https://cabrio.owiz.fittingbox.com"), geolocation=(), payment=(), usb=()
+  # Neem het woord van de server over het bestandstype, raad niet uit de inhoud.
+  X-Content-Type-Options: nosniff
+  # Fittingbox hoort te weten dat het verkeer van dit domein komt, niet van welke pagina
+  # met welke staart erachter.
+  Referrer-Policy: strict-origin-when-cross-origin

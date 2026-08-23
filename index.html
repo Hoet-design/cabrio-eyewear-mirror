@@ -98,18 +98,11 @@
         <iframe width="100%" height="100%" src="https://cabrio.owiz.fittingbox.com"
                 title="Cabrio Eyewear Mirror" frameborder="0" allow="microphone; camera"></iframe>
     </noscript>
-    <script>
-        // De pas-app is driehonderd kilobyte javascript op een ander domein, en zolang die
-        // binnenkomt en uitgevoerd wordt, komt de browser niet toe aan het tekenen van deze
-        // pagina. Op de Hoet-spiegel viel het eerste beeld daardoor op 4,5 seconden voor een
-        // kop van twee kilobyte; met het iframe na het load-event werd dat 1,7.
-        //
-        // Zonder javascript staat het iframe er meteen: dan is er ook geen bundel die de
-        // hoofddraad bezet houdt.
-        addEventListener('load', function () {
-            var frame = document.getElementById('mirror');
-            frame.src = frame.dataset.src;
-        });
-    </script>
+    <!-- Los bestand en niet inline, omdat de kopregel Content-Security-Policy inline
+         javascript weigert. Dat kon ook met een hash van deze regels in _headers, maar dan
+         breekt de pas-app zodra iemand hier een spatie wijzigt en vergeet de hash bij te
+         werken: stil, en pas zichtbaar in productie. defer houdt het uit de weg van het
+         tekenen en draait nog ruim voor het load-moment waar het op wacht. -->
+    <script src="mirror.js" defer></script>
 </body>
 </html>
