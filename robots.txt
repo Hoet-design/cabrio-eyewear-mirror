@@ -1,0 +1,7 @@
+# Er valt hier niets af te schermen: één publieke pagina die bestaat om gedeeld te worden.
+# Dit bestand staat er omdat de afwezigheid ervan een 404 in elk crawl-log zet, en omdat
+# het de enige plek is waar je naar de sitemap kunt wijzen.
+User-agent: *
+Allow: /
+
+Sitemap: https://cabrio-eyewear-mirror.com/sitemap.xml

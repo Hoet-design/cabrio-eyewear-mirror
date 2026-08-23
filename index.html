@@ -24,6 +24,10 @@
          pagina. Vooraf verbinden haalt dat naar voren. -->
     <link rel="preconnect" href="https://cabrio.owiz.fittingbox.com" crossorigin>
     <link rel="dns-prefetch" href="https://cabrio.owiz.fittingbox.com">
+    <!-- Deze pagina is overal met een tracking-staart achter het adres te bereiken
+         ("?utm_source=..."), en elk van die adressen is voor een zoekmachine een aparte
+         pagina met dezelfde inhoud. Deze regel wijst er één aan als het echte. -->
+    <link rel="canonical" href="https://cabrio-eyewear-mirror.com/">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <!-- <link href="https://fonts.googleapis.com/css?family=Quicksand:400,500&display=swap" rel="stylesheet"> -->
@@ -67,6 +71,20 @@
             font-weight: 500;
             padding: .5em 1em;
         }
+        /* Weggeschoven in plaats van display:none of visibility:hidden: wat niet getekend
+           wordt, wordt door een schermlezer ook niet voorgelezen, en dan lost de kop het
+           probleem niet op dat hij moest oplossen. */
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            margin: -1px;
+            padding: 0;
+            overflow: hidden;
+            clip-path: inset(50%);
+            white-space: nowrap;
+            border: 0;
+        }
         iframe {
             display: block;
             border: 0;
@@ -92,6 +110,12 @@
             </div>
         </div>
     </header>
+    <!-- De pagina had geen enkele kop, en het logo is hier een achtergrondafbeelding: dat
+         is voor een schermlezer helemaal niets, ook geen alt-tekst. Wie deze pagina zo
+         opent, hoorde dus alleen andermans app in een frame en nooit waar hij beland was.
+         Zichtbaar staat het er wel al, in het logo en in de app zelf, dus deze kop wordt
+         weggeschoven in plaats van getekend. -->
+    <h1 class="visually-hidden">Cabrio Eyewear Mirror</h1>
     <iframe id="mirror" width="100%" height="100%" data-src="https://cabrio.owiz.fittingbox.com"
             title="Cabrio Eyewear Mirror" frameborder="0" allow="microphone; camera"></iframe>
     <noscript>
