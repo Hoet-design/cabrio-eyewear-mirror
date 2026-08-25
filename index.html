@@ -23,6 +23,24 @@
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
+    <!-- maximum-scale=1.0 verhindert pinch-zoom. Dat is een keuze en geen overgeschreven
+         boilerplate, en ze staat hier opgeschreven omdat een meting haar anders terecht
+         opnieuw als gebrek aanmerkt.
+
+         De pas-app gebruikt zelf gebaren om een montuur op een gezicht te schuiven. Vangt
+         de browser die pinch op als paginazoom, dan botst dat. Fittingbox declareert het
+         in hun eigen document ook (user-scalable=no), maar de viewport-meta van een iframe
+         wordt genegeerd: alleen die van het bovenliggende document telt. Deze regel is dus
+         de enige plek waar hun bedoeling nog uitgevoerd kan worden.
+
+         Wat het kost, staat er eerlijk bij: dit wijkt af van WCAG 1.4.4, en op een pagina
+         die bestaat om een bril van dichtbij te bekijken is dat geen kleinigheid. Wat het
+         nuanceert: iOS negeert maximum-scale sinds iOS 10, dus op elke iPhone is de pas-app
+         al zoombaar en daar komt niets over terug. Het bijt alleen op Android.
+
+         Weghalen kan zodra de gebaren binnen het iframe met touch-action afgeschermd zijn.
+         Dat is het document van Fittingbox en niet het onze, dus dat is een vraag aan hen
+         en geen regel die wij hier kunnen wijzigen. -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Cabrio Eyewear Mirror</title>
